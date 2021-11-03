@@ -26,10 +26,9 @@
 package de.theit.jenkins.crowd;
 
 import java.util.List;
-
+import java.util.logging.Logger;
 import org.acegisecurity.GrantedAuthority;
 import org.acegisecurity.userdetails.UserDetails;
-
 import com.atlassian.crowd.model.user.User;
 
 /**
@@ -43,6 +42,10 @@ import com.atlassian.crowd.model.user.User;
 public class CrowdUser implements UserDetails {
 	/** Necessary for serialisation. */
 	private static final long serialVersionUID = -907996070755427899L;
+	
+	/** Used for logging purposes. */
+    private static final Logger LOG = Logger
+            .getLogger(CrowdUser.class.getName());
 
 	/** Stores the granted authorities. */
 	private List<GrantedAuthority> grantedAuthorities;
@@ -82,7 +85,8 @@ public class CrowdUser implements UserDetails {
 	 */
 	@Override
 	public String getPassword() {
-		throw new UnsupportedOperationException("Not giving you the password");
+        LOG.warning("Not giving you the password");
+        return null;
 	}
 
 	/**
